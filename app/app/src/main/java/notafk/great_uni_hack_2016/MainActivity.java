@@ -6,6 +6,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.RemoteInput;
 import android.widget.Button;
 import android.widget.ToggleButton;
 import android.widget.CompoundButton;
@@ -29,7 +30,10 @@ import android.content.res.Resources;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 
+
+
 public class MainActivity extends AppCompatActivity {
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,8 +53,31 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        Uri alarmSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+        final NotificationCompat.Builder persNotf =
+                new NotificationCompat.Builder(this)
+                        .addAction(R.drawable.ic_justdone,"YES",null)
+                        .addAction(R.drawable.ic_justdone,"YES",null)
+                        .addAction(R.drawable.ic_justdone,"YES",null)
+                        .setSmallIcon(R.drawable.ic_eventnotif)
+                        .setContentTitle("AUTO UPLOAD IMAGES")
+                        .setContentText("Toggle?")
+                        .setPriority(NotificationCompat.PRIORITY_MAX)
+                        .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
+                        .setOngoing(true);
 
+
+        final NotificationManager mNotificationManager =
+                (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+
+        final NotificationManager persNotfMan =
+                (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+
+        persNotfMan.notify(0, persNotf.build());
+
+
+        final int notfCount = 1;
+
+        Uri alarmSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
         long[] vibrate = { 0, 100, 200, 300, 1000, 200, 100, 0 };
 
         final NotificationCompat.Builder mBuilder =
@@ -66,26 +93,6 @@ public class MainActivity extends AppCompatActivity {
                         .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
                         .setVibrate(vibrate);
 //                        .setOngoing(true);
-
-        final NotificationCompat.Builder persNotf =
-                new NotificationCompat.Builder(this)
-                        .setSmallIcon(R.drawable.ic_eventnotif)
-                        .setContentTitle("AUTO UPLOAD IMAGES")
-                        .setContentText("Toggle?")
-                        .setPriority(NotificationCompat.PRIORITY_MAX)
-                        .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
-                        .setOngoing(true);
-
-        final NotificationManager mNotificationManager =
-                (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-
-        final NotificationManager persNotfMan =
-                (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-
-        persNotfMan.notify(0, persNotf.build());
-
-
-        final int notfCount = 1;
 
         final Button button = (Button) findViewById(R.id.button);
         button.setOnClickListener(new View.OnClickListener() {
@@ -105,3 +112,4 @@ public class MainActivity extends AppCompatActivity {
     }
 
 }
+
