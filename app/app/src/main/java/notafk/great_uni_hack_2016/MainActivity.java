@@ -58,19 +58,34 @@ public class MainActivity extends AppCompatActivity {
                         .setSmallIcon(R.drawable.ic_stat_my_new_message)
                         .setContentTitle("Event detected in your location!")
                         .setContentText("Would you like to join?")
-                        .setPriority(NotificationCompat.PRIORITY_MAX)
+                        .setPriority(NotificationCompat.PRIORITY_DEFAULT)
                         .setSound(alarmSound)
-                        .setVibrate(vibrate)
+                        .setVibrate(vibrate);
+//                        .setOngoing(true);
+
+        final NotificationCompat.Builder persNotf =
+                new NotificationCompat.Builder(this)
+                        .setSmallIcon(R.drawable.ic_stat_my_new_message)
+                        .setContentTitle("AUTO UPLOAD IMAGES")
+                        .setContentText("Toggle?")
+                        .setPriority(NotificationCompat.PRIORITY_MAX)
                         .setOngoing(true);
 
         final NotificationManager mNotificationManager =
                 (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 
+        final NotificationManager persNotfMan =
+                (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+
+        persNotfMan.notify(0, persNotf.build());
+
+
+        final int notfCount = 1;
 
         final Button button = (Button) findViewById(R.id.button);
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                mNotificationManager.notify(0, mBuilder.build());
+                mNotificationManager.notify(notfCount, mBuilder.build());
 
             }
         });
