@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
 
         Uri alarmSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
 
-        long[] vibrate = { 0, 100, 200, 300, 1000 };
+        long[] vibrate = { 0, 100, 200, 300, 1000, 200, 100, 0 };
 
         final NotificationCompat.Builder mBuilder =
                 new NotificationCompat.Builder(this)
