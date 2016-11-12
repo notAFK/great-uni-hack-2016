@@ -51,6 +51,8 @@ public class MainActivity extends AppCompatActivity {
 
         Uri alarmSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
 
+        long[] vibrate = { 0, 100, 200, 300, 1000 };
+
         final NotificationCompat.Builder mBuilder =
                 new NotificationCompat.Builder(this)
                         .setSmallIcon(R.drawable.ic_stat_my_new_message)
@@ -58,6 +60,7 @@ public class MainActivity extends AppCompatActivity {
                         .setContentText("Would you like to join?")
                         .setPriority(NotificationCompat.PRIORITY_MAX)
                         .setSound(alarmSound)
+                        .setVibrate(vibrate)
                         .setOngoing(true);
 
         final NotificationManager mNotificationManager =
