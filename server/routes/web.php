@@ -18,3 +18,12 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index');
+
+Route::group(['/events'], function() {
+  Route::get('/', 'EventController@index');
+  Route::get('/{id}', 'EventController@show');
+  Route::get('/add', 'EventController@create')->middleware('auth');
+  Route::post('/add', 'EventController@store')->middleware('auth');
+  Route::get('/edit/{id}', 'EventController@edit')->middleware('auth');
+  Route::post('/edit/{id}', 'EventController@update')->middleware('auth');
+});

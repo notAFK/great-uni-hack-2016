@@ -82,6 +82,6 @@
     </div>
 
     <!-- Scripts -->
-    <script type="text/javascript" src="{{ asset('js/custom.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
 </body>
 </html>
