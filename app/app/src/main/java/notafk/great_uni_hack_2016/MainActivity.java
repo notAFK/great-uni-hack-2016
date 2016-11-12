@@ -55,20 +55,25 @@ public class MainActivity extends AppCompatActivity {
 
         final NotificationCompat.Builder mBuilder =
                 new NotificationCompat.Builder(this)
-                        .setSmallIcon(R.drawable.ic_stat_my_new_message)
+                        .addAction(R.drawable.ic_justdone,"YES",null)
+                        .addAction(R.drawable.ic_justdone,"YES",null)
+                        .addAction(R.drawable.ic_justdone,"YES",null)
+                        .setSmallIcon(R.drawable.ic_staticnotif)
                         .setContentTitle("Event detected in your location!")
                         .setContentText("Would you like to join?")
                         .setPriority(NotificationCompat.PRIORITY_DEFAULT)
                         .setSound(alarmSound)
+                        .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
                         .setVibrate(vibrate);
 //                        .setOngoing(true);
 
         final NotificationCompat.Builder persNotf =
                 new NotificationCompat.Builder(this)
-                        .setSmallIcon(R.drawable.ic_stat_my_new_message)
+                        .setSmallIcon(R.drawable.ic_eventnotif)
                         .setContentTitle("AUTO UPLOAD IMAGES")
                         .setContentText("Toggle?")
                         .setPriority(NotificationCompat.PRIORITY_MAX)
+                        .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
                         .setOngoing(true);
 
         final NotificationManager mNotificationManager =
