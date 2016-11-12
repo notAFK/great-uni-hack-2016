@@ -19,7 +19,7 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index');
 
-Route::group(['/events'], function() {
+Route::group(['prefix' => '/events'], function() {
   Route::get('/', 'EventController@index');
   Route::get('/{id}', 'EventController@show');
   Route::get('/add', 'EventController@create')->middleware('auth');
