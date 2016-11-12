@@ -47,16 +47,24 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        NotificationCompat.Builder mBuilder =
+        final NotificationCompat.Builder mBuilder =
                 new NotificationCompat.Builder(this)
                         .setSmallIcon(R.drawable.ic_stat_my_new_message)
                         .setContentTitle("My notification")
                         .setContentText("Hello World!");
 
-        NotificationManager mNotificationManager =
+        final NotificationManager mNotificationManager =
                 (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 
-        mNotificationManager.notify(0, mBuilder.build());
+
+        final Button button = (Button) findViewById(R.id.button);
+        button.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                mNotificationManager.notify(0, mBuilder.build());
+
+            }
+        });
+
     }
 
     @Override
@@ -66,17 +74,4 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
-}
-
-class MyActivity extends Activity {
-    protected void onCreate(Bundle icicle) {
-        super.onCreate(icicle);
-
-        final Button button = (Button) findViewById(R.id.button);
-        button.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                // Perform action on click
-            }
-        });
-    }
 }
