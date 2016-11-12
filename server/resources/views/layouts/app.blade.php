@@ -8,11 +8,13 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>@yield('title')</title>
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet" type="text/css" >
+    <link href="{{ asset('css/global.css') }}" rel="stylesheet" type="text/css" >
 
+    @yield('css')
     <!-- Scripts -->
     <script>
         window.Laravel = <?=json_encode([
@@ -65,7 +67,7 @@
                                                      document.getElementById('logout-form').submit();">
                                             Logout
                                         </a>
-
+                                        <a href="{{ url('/events/add') }}">Create Event</a>
                                         <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
                                             {{ csrf_field() }}
                                         </form>

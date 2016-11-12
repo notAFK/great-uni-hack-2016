@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use Auth;
+use App\Event;
+use App\User;
 use Illuminate\Http\Request;
 
 class EventController extends Controller
@@ -14,7 +17,8 @@ class EventController extends Controller
     public function index()
     {
         if(Auth::check()) {
-            return view('in.events.index');
+            return view('in.events.index')->with('events', Event::all())
+                                          ->with('my_events', Auth::user()->events);
         }
 
         $events = Event::all();
@@ -28,7 +32,7 @@ class EventController extends Controller
      */
     public function create()
     {
-        return view('events.create');
+        return view('in.events.create');
     }
 
     /**
