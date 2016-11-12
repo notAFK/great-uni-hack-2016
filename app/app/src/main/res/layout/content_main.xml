@@ -32,4 +32,14 @@
         android:layout_alignLeft="@+id/toggleButton2"
         android:layout_alignStart="@+id/toggleButton2" />
 
+    <Button
+        android:text="Send Notification"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/button"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="11dp" />
+
 </RelativeLayout>

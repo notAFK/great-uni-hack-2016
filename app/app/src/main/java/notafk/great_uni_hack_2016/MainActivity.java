@@ -1,8 +1,10 @@
 package notafk.great_uni_hack_2016;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.widget.Button;
 import android.widget.ToggleButton;
 import android.widget.CompoundButton;
 import android.widget.Switch;
@@ -11,6 +13,19 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.support.v4.app.NotificationCompat;
+import android.content.Intent;
+import android.app.PendingIntent;
+import android.support.v4.app.TaskStackBuilder;
+import android.app.NotificationManager;
+import android.content.Context;
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Intent;
+import android.content.res.Resources;
+import android.support.v7.app.ActionBarActivity;
+import android.os.Bundle;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -31,6 +46,17 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+
+        NotificationCompat.Builder mBuilder =
+                new NotificationCompat.Builder(this)
+                        .setSmallIcon(R.drawable.ic_stat_my_new_message)
+                        .setContentTitle("My notification")
+                        .setContentText("Hello World!");
+
+        NotificationManager mNotificationManager =
+                (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+
+        mNotificationManager.notify(0, mBuilder.build());
     }
 
     @Override
@@ -40,4 +66,17 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
+}
+
+class MyActivity extends Activity {
+    protected void onCreate(Bundle icicle) {
+        super.onCreate(icicle);
+
+        final Button button = (Button) findViewById(R.id.button);
+        button.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                // Perform action on click
+            }
+        });
+    }
 }
