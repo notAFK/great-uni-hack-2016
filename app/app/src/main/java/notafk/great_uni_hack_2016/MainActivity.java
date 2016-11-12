@@ -50,8 +50,9 @@ public class MainActivity extends AppCompatActivity {
         final NotificationCompat.Builder mBuilder =
                 new NotificationCompat.Builder(this)
                         .setSmallIcon(R.drawable.ic_stat_my_new_message)
-                        .setContentTitle("My notification")
-                        .setContentText("Hello World!");
+                        .setContentTitle("Event detected in your location!")
+                        .setContentText("Would you like to join?")
+                        .setOngoing(true);
 
         final NotificationManager mNotificationManager =
                 (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
