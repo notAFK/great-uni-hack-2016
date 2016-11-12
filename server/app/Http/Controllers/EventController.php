@@ -63,12 +63,14 @@ class EventController extends Controller
             return redirect()->back()->withErrors($validator);
         }
 
-        $event = new Event();
+        $event = new Event;
         $event->title = $request->input('title');
+        $event->slug = str_slug($request->input('title'), '-');
         $event->location_name = $request->input('location_name');
         $event->start_date = $request->input('start_date');
         $event->end_date = $request->input('end_date');
         $event->password = $request->input('password');
+        $event->user_id = Auth::id();
         $event->save();
 
         return redirect()->to('/events/' . $event->id);
