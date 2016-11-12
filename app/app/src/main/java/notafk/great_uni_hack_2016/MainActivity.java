@@ -1,6 +1,8 @@
 package notafk.great_uni_hack_2016;
 
 import android.app.Activity;
+import android.media.RingtoneManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -47,11 +49,15 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        Uri alarmSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+
         final NotificationCompat.Builder mBuilder =
                 new NotificationCompat.Builder(this)
                         .setSmallIcon(R.drawable.ic_stat_my_new_message)
                         .setContentTitle("Event detected in your location!")
                         .setContentText("Would you like to join?")
+                        .setPriority(NotificationCompat.PRIORITY_MAX)
+                        .setSound(alarmSound)
                         .setOngoing(true);
 
         final NotificationManager mNotificationManager =
