@@ -1,2 +1,4 @@
 # great-uni-hack-2016
-###### Making events great again....
+###### Making events great again.
+###### Making Android great again.
+###### Making Xiaomi great again.
