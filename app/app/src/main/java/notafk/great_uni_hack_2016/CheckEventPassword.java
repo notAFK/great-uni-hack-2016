@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
+import android.os.Bundle;
 import android.util.Log;
 
 import org.json.JSONObject;
@@ -89,8 +90,11 @@ public class CheckEventPassword extends AsyncTask<String, Void, String> {
                     editor.apply();
 
                     Intent intent = new Intent(CONTEXT, MainActivity.class);
+                    Bundle b = new Bundle();
+                    b.putInt("id", event_id); //Your id
+                    b.putBoolean("enabled", true);
+                    intent.putExtras(b);
                     CONTEXT.startActivity(intent);
-
                 }
                 else {
 

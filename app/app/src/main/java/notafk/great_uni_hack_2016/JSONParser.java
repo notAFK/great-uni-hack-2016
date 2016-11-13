@@ -4,6 +4,7 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -86,6 +87,13 @@ public class JSONParser extends AsyncTask<String, Void, String> {
 
             try {
                 JSONArray arr = new JSONArray(events);
+                if(arr.length() == 0) {
+                    SharedPreferences settings =
+                            CONTEXT.getSharedPreferences(MainActivity.PREFS_NAME, 0);
+                    SharedPreferences.Editor editor = settings.edit();
+                    editor.putInt("event_id", 0);
+                    editor.putBoolean("upload_enabled", false);
+                }
                 for (int i = 0; i < arr.length(); i++) {
                     event_id = arr.getJSONObject(i).getString("id");
                     event_title = arr.getJSONObject(i).getString("title");

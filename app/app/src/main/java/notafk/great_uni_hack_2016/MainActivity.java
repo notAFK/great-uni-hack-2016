@@ -48,6 +48,8 @@ public class MainActivity extends AppCompatActivity {
     public int notifCounter = 5;
     public static final String PREFS_NAME = "MyPrefsFile";
 
+    public int EVENT_ID = 0;
+    public  boolean ENABLED = false;
 
 
     private PhotosObserver instUploadObserver = new PhotosObserver();
@@ -67,12 +69,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-        SharedPreferences settings =
-                getSharedPreferences(MainActivity.PREFS_NAME, 0);
-        SharedPreferences.Editor editor = settings.edit();
-        editor.putInt("event_id", 0);
-        editor.putBoolean("upload_enabled", false);
-        editor.apply();
 
         //---------------------------------------
         //The code which takes care of newly made pictures
@@ -279,32 +275,33 @@ public class MainActivity extends AppCompatActivity {
             protected void onPostExecute(String msg) {
 //                prgDialog.setMessage("Calling Upload");
 //                // Put converted Image string into Async Http Post param
-//                params.put("image", encodedString);
+                    params.put("image", encodedString);
 //                // Trigger Image upload
-                triggerImageUpload();
+                triggerImageUpload(params);
             }
         }.execute(null, null, null);
     }
 
-    public void triggerImageUpload() {
-        makeHTTPCall();
+    public void triggerImageUpload(RequestParams params) {
+        makeHTTPCall(params);
     }
 
 
     // Make Http call to upload Image to Php server
-    public void makeHTTPCall() {
+    public void makeHTTPCall(RequestParams params) {
 //        prgDialog.setMessage("Invoking Php");
         AsyncHttpClient client = new AsyncHttpClient();
         // Don't forget to change the IP address to your LAN address. Port no as well.
         System.out.println("A ajungs la pasul cel mare");
-        SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
+        SharedPreferences settings = getSharedPreferences(MainActivity.PREFS_NAME, 0);
         boolean enabled = settings.getBoolean("upload_enabled", false);
         int event_id = settings.getInt("event_id", 0);
+        //int event_id = this.EVENT_ID;
         if(!enabled) {
             Log.e("status", "not enabled");
             return;
         }
-        String the_url = "http://test.lanfin.com/api/upload/" + event_id;
+        String the_url = "http://10.0.2.2/projects/guh2016/api/upload/" + event_id;
         Log.e("url: ", the_url);
         client.post(the_url ,
                 params, new AsyncHttpResponseHandler() {
@@ -325,6 +322,7 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onFailure(int statusCode, Throwable error,
                                           String content) {
+                        System.out.println(content);
                         System.out.println("A dat FAIL");
                         // Hide Progress Dialog
 //                        prgDialog.hide();

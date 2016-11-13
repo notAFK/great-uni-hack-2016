@@ -12,6 +12,22 @@ class VerifyCsrfToken extends BaseVerifier
      * @var array
      */
     protected $except = [
-        //
+        'api/upload',
+        'api',
+        'api/upload/{id}'
     ];
+
+    public function handle($request, \Closure $next)
+    {
+      return $this->addCookieToResponse($request, $next($request));
+      
+        if ($this->isReading($request) 
+            || $this->excludedRoutes($request) 
+            || $this->tokensMatch($request))
+        {
+            return $this->addCookieToResponse($request, $next($request));
+        }
+
+        throw new \TokenMismatchException;
+    }
 }

@@ -7,20 +7,18 @@ use App\Http\Controllers\Controller;
 
 class UploadController extends Controller
 {
-  public function upload_single()
+  public function upload_single($id)
   {
-      // Get image string posted from Android App
-      $base=$_REQUEST['image'];
-      // Get file name posted from Android App
-      $filename = $_REQUEST['filename'];
-      // Decode Image
-      $binary=base64_decode($base);
-      header('Content-Type: bitmap; charset=utf-8');
-      // Images will be saved under 'www/imgupload/uplodedimages' folder
-      $file = fopen('uploadedimages/'.$filename, 'wb');
-      // Create File
-      fwrite($file, $binary);
-      fclose($file);
-      echo 'Image upload complete, Please check your php file directory';
+    $base64_string = $_POST['image'];
+
+    if(!file_exists(base_path() . "/public/uploads/" . $id)) {
+      mkdir(base_path() . "/public/uploads/" . $id);
+    }
+    $ifp = fopen(base_path() . "/public/uploads/" . $id . "/" . str_random(20) . '.jpg', 'wb'); 
+
+    //$data = explode(',', $base64_string);
+
+    fwrite($ifp, base64_decode($base64_string)); 
+    fclose($ifp); 
   }
 }

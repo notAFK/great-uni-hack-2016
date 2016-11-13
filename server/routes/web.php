@@ -28,7 +28,8 @@ Route::group(['prefix' => '/events'], function() {
 });
 
 Route::group(['prefix' => 'api'], function() {
-  Route::post('/upload', 'Api\UploadController@upload_single');
+  Route::post('/upload/{id}', 'Api\UploadController@upload_single');
+
   Route::get('/check/{lat}/{lng}', function($lat, $lng) {
 
     $query = "SELECT *, ( 3959 * acos( cos( radians(" . $lat . ") ) * cos( radians( lat ) ) * cos( radians( lng ) - radians(" . $lng . ") ) + sin( radians(" . $lat . ") ) * sin( radians( lat ) ) ) ) AS distance
