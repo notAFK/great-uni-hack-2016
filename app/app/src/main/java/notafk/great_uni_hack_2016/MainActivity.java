@@ -60,8 +60,7 @@ public class MainActivity extends AppCompatActivity {
                         .setContentTitle("AUTO UPLOAD IMAGES")
                         .setContentText("Toggle?")
                         .setPriority(NotificationCompat.PRIORITY_MAX)
-                        .addAction(R.drawable.ic_justdone,"YES",null)
-                        .addAction(R.drawable.ic_justdone,"NO",null)
+                        .addAction(R.drawable.ic_justdone,"TOGGLE",null)
                         .setOngoing(true);
 
 
@@ -82,7 +81,9 @@ public class MainActivity extends AppCompatActivity {
                         .setSmallIcon(R.drawable.ic_staticnotif)
                         .setContentTitle("Event detected in your location!")
                         .setContentText("Would you like to join?")
-                        .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+                        .setPriority(NotificationCompat.PRIORITY_MAX)
+                        .addAction(R.drawable.ic_justdone,"YES",null)
+                        .addAction(R.drawable.ic_justdone,"NO",null)
                         .setSound(alarmSound)
                         .setVibrate(vibrate);
 //                        .setOngoing(true);
