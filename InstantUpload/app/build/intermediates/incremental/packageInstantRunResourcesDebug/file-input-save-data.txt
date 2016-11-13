@@ -1,0 +1,15 @@
+#Internal package file, do not edit.
+#Sun Nov 13 03:06:52 GMT 2016
+1.base=/home/paul/guh2016/great-uni-hack-2016/InstantUpload/app/build/intermediates/res/resources-debug.ap_
+1.file=/home/paul/guh2016/great-uni-hack-2016/InstantUpload/app/build/intermediates/res/resources-debug.ap_/resources.arsc
+2.base=/home/paul/guh2016/great-uni-hack-2016/InstantUpload/app/build/intermediates/res/resources-debug.ap_
+3.set=ANDROID_RESOURCE
+2.set=ANDROID_RESOURCE
+2.file=/home/paul/guh2016/great-uni-hack-2016/InstantUpload/app/build/intermediates/res/resources-debug.ap_/res/drawable-hdpi-v4/icon.png
+count=4
+1.set=ANDROID_RESOURCE
+3.base=/home/paul/guh2016/great-uni-hack-2016/InstantUpload/app/build/intermediates/res/resources-debug.ap_
+0.set=ANDROID_RESOURCE
+0.base=/home/paul/guh2016/great-uni-hack-2016/InstantUpload/app/build/intermediates/res/resources-debug.ap_
+3.file=/home/paul/guh2016/great-uni-hack-2016/InstantUpload/app/build/intermediates/res/resources-debug.ap_/AndroidManifest.xml
+0.file=/home/paul/guh2016/great-uni-hack-2016/InstantUpload/app/build/intermediates/res/resources-debug.ap_/res/layout/main.xml

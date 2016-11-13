@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="true"
+        jar="/home/paul/guh2016/great-uni-hack-2016/InstantUpload/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="93d2d9c3948ad1bf573e2be4c46d39c3c7d3714e">
+        <dex dex="/home/paul/guh2016/great-uni-hack-2016/InstantUpload/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run-bootstrap_e4905381823516e4ec85f6057d31dd40260e6f87/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/paul/guh2016/great-uni-hack-2016/InstantUpload/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="66adb99d7c82ceb4d6b05f07933b9b2e80e36027">
+        <dex dex="/home/paul/guh2016/great-uni-hack-2016/InstantUpload/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run_ee2e906c9a5bd8148a3c70a4666caa7dd9fef407/classes.dex" />
+    </item>
+
+</items>

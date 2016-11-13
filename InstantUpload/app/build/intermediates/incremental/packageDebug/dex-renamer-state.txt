@@ -1,0 +1,7 @@
+#Sun Nov 13 03:06:56 GMT 2016
+base.0=/home/paul/guh2016/great-uni-hack-2016/InstantUpload/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run-bootstrap_e4905381823516e4ec85f6057d31dd40260e6f87
+renamed.1=classes.dex
+renamed.0=classes2.dex
+file.1=/home/paul/guh2016/great-uni-hack-2016/InstantUpload/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run_ee2e906c9a5bd8148a3c70a4666caa7dd9fef407/classes.dex
+base.1=/home/paul/guh2016/great-uni-hack-2016/InstantUpload/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run_ee2e906c9a5bd8148a3c70a4666caa7dd9fef407
+file.0=/home/paul/guh2016/great-uni-hack-2016/InstantUpload/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run-bootstrap_e4905381823516e4ec85f6057d31dd40260e6f87/classes.dex
