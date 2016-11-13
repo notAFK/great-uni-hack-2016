@@ -42,7 +42,6 @@ public class MainActivity extends AppCompatActivity {
     public String givenPassword = "";
     public int notifCounter = 5;
 
-//    final Intent intent = new Intent(this, Fpassword.class);
 //
 //    protected void showSimplePopUp() {
 //
@@ -135,7 +134,7 @@ public class MainActivity extends AppCompatActivity {
         final Button secondbutton = (Button) findViewById(R.id.button2);
         secondbutton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                showSimplePopUp();
+//                showSimplePopUp();
             }
         });
 
