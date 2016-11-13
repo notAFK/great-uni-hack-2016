@@ -17,7 +17,7 @@ public class LocationService extends Service
 {
     private static final String TAG = "BOOMBOOMTESTGPS";
     private LocationManager mLocationManager = null;
-    private static final int LOCATION_INTERVAL = 10;
+    private static final int LOCATION_INTERVAL = 5000;
     private static final float LOCATION_DISTANCE = 10f;
 
     private class LocationListener implements android.location.LocationListener
@@ -78,7 +78,7 @@ public class LocationService extends Service
     @Override
     public void onCreate()
     {
-        Log.w(TAG, "onCreate");
+        Log.e(TAG, "onCreate");
         initializeLocationManager();
         try {
             mLocationManager.requestLocationUpdates(

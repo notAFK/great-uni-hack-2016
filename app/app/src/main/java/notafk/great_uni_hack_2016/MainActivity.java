@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
     public String givenPassword = "";
     public int notifCounter = 5;
 
-    final Intent intent = new Intent(this, Fpassword.class);
+    //final Intent intent = new Intent(this, Fpassword.class);
 
     protected void showSimplePopUp() {
 
@@ -112,14 +112,20 @@ showSimplePopUp();
         long[] vibrate = { 0, 100, 200, 300, 1000, 200, 100, 0 };
 
 
+        Intent yesIntent = new Intent(this, EventDetectedPasswordActivity.class);
+        yesIntent.putExtra("eventTitle", "SUGI PULA MUIE IN CUR");
+        yesIntent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+
+        PendingIntent pIntent = PendingIntent.getActivity(this, (int) System.currentTimeMillis(),
+                yesIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+
         final NotificationCompat.Builder mBuilder =
                 new NotificationCompat.Builder(this)
                         .setSmallIcon(R.drawable.ic_staticnotif)
                         .setContentTitle("Event detected in your location!")
                         .setContentText("Would you like to join?")
                         .setPriority(NotificationCompat.PRIORITY_MAX)
-                        .addAction(R.drawable.ic_justdone,"YES",null)
-                        .addAction(R.drawable.ic_justdone,"NO",null)
+                        .addAction(R.drawable.ic_justdone,"YES",pIntent)
                         .setSound(alarmSound)
                         .setVibrate(vibrate);
 //                        .setOngoing(true);
