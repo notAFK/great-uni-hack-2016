@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.RemoteInput;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.ToggleButton;
 import android.widget.CompoundButton;
@@ -55,14 +56,12 @@ public class MainActivity extends AppCompatActivity {
 
         final NotificationCompat.Builder persNotf =
                 new NotificationCompat.Builder(this)
-                        .addAction(R.drawable.ic_justdone,"YES",null)
-                        .addAction(R.drawable.ic_justdone,"YES",null)
-                        .addAction(R.drawable.ic_justdone,"YES",null)
                         .setSmallIcon(R.drawable.ic_eventnotif)
                         .setContentTitle("AUTO UPLOAD IMAGES")
                         .setContentText("Toggle?")
                         .setPriority(NotificationCompat.PRIORITY_MAX)
-                        .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
+                        .addAction(R.drawable.ic_justdone,"YES",null)
+                        .addAction(R.drawable.ic_justdone,"NO",null)
                         .setOngoing(true);
 
 
@@ -75,30 +74,23 @@ public class MainActivity extends AppCompatActivity {
         persNotfMan.notify(0, persNotf.build());
 
 
-        final int notfCount = 1;
-
         Uri alarmSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
         long[] vibrate = { 0, 100, 200, 300, 1000, 200, 100, 0 };
 
         final NotificationCompat.Builder mBuilder =
                 new NotificationCompat.Builder(this)
-                        .addAction(R.drawable.ic_justdone,"YES",null)
-                        .addAction(R.drawable.ic_justdone,"YES",null)
-                        .addAction(R.drawable.ic_justdone,"YES",null)
                         .setSmallIcon(R.drawable.ic_staticnotif)
                         .setContentTitle("Event detected in your location!")
                         .setContentText("Would you like to join?")
                         .setPriority(NotificationCompat.PRIORITY_DEFAULT)
                         .setSound(alarmSound)
-                        .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
                         .setVibrate(vibrate);
 //                        .setOngoing(true);
 
         final Button button = (Button) findViewById(R.id.button);
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                mNotificationManager.notify(notfCount, mBuilder.build());
-
+                mNotificationManager.notify(1, mBuilder.build());
             }
         });
 
