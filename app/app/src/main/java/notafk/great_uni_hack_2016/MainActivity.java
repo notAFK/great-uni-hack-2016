@@ -1,12 +1,14 @@
 package notafk.great_uni_hack_2016;
 
 import android.app.Activity;
+import android.content.DialogInterface;
 import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.RemoteInput;
+import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.ToggleButton;
@@ -36,6 +38,25 @@ import android.os.Bundle;
 public class MainActivity extends AppCompatActivity {
 
 
+    private void showSimplePopUp() {
+
+        AlertDialog.Builder helpBuilder = new AlertDialog.Builder(this);
+        helpBuilder.setTitle("Pop Up");
+        helpBuilder.setMessage("This is a Simple Pop Up");
+        helpBuilder.setPositiveButton("Ok",
+                new DialogInterface.OnClickListener() {
+
+                    public void onClick(DialogInterface dialog, int which) {
+                        // Do nothing but close the dialog
+                    }
+                });
+
+        // Remember, create doesn't show the dialog
+        AlertDialog helpDialog = helpBuilder.create();
+        helpDialog.show();
+    }
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
         toggle.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
-                    // The toggle is enabled
+                    showSimplePopUp();
                 } else {
                     // The toggle is disabled
                 }
