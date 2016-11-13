@@ -124,6 +124,8 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        // Start location service
+        startService(new Intent(this, LocationService.class));
     }
 
     @Override
