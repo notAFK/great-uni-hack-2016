@@ -21,6 +21,7 @@ public class LocationService extends Service
     private static final int LOCATION_INTERVAL = 5000;
     private static final float LOCATION_DISTANCE = 10f;
     private static final String API_URL = "http://10.0.2.2/projects/guh2016/api";
+    private Context CONTEXT;
 
     private class LocationListener implements android.location.LocationListener
     {
@@ -37,7 +38,7 @@ public class LocationService extends Service
         {
             Log.e(TAG, "onLocationChanged: " + location);
 
-            new JSONParser().execute(API_URL + "/check/" + location.getLatitude() + "/" +
+            new JSONParser(CONTEXT).execute(API_URL + "/check/" + location.getLatitude() + "/" +
                     location.getLongitude());
 
             mLastLocation.set(location);
@@ -85,6 +86,7 @@ public class LocationService extends Service
     public void onCreate()
     {
         Log.e(TAG, "onCreate");
+        CONTEXT = this;
         initializeLocationManager();
         try {
             mLocationManager.requestLocationUpdates(
@@ -125,7 +127,8 @@ public class LocationService extends Service
     private void initializeLocationManager() {
         Log.e(TAG, "initializeLocationManager");
         if (mLocationManager == null) {
-            mLocationManager = (LocationManager) getApplicationContext().getSystemService(Context.LOCATION_SERVICE);
+            mLocationManager = (LocationManager)
+                    getApplicationContext().getSystemService(Context.LOCATION_SERVICE);
         }
     }
 }

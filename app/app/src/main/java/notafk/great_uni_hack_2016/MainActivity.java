@@ -1,12 +1,9 @@
 package notafk.great_uni_hack_2016;
 
 import android.app.NotificationManager;
-import android.app.PendingIntent;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.media.RingtoneManager;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.NotificationCompat;
 import android.support.v7.app.AlertDialog;
@@ -24,6 +21,7 @@ public class MainActivity extends AppCompatActivity {
 
     public String givenPassword = "";
     public int notifCounter = 5;
+    public static final String PREFS_NAME = "MyPrefsFile";
 
     protected void showSimplePopUp() {
 
@@ -90,34 +88,6 @@ public class MainActivity extends AppCompatActivity {
         persNotfMan.notify(0, persNotf.build());
 
 
-        Uri alarmSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
-        long[] vibrate = { 0, 100, 200, 300, 1000, 200, 100, 0 };
-
-
-        Intent yesIntent = new Intent(this, EventDetectedPasswordActivity.class);
-        yesIntent.putExtra("eventTitle", "SUGI PULA MUIE IN CUR");
-        yesIntent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP | Intent.FLAG_ACTIVITY_CLEAR_TOP);
-
-        PendingIntent pIntent = PendingIntent.getActivity(this, (int) System.currentTimeMillis(),
-                yesIntent, PendingIntent.FLAG_UPDATE_CURRENT);
-
-        final NotificationCompat.Builder mBuilder =
-                new NotificationCompat.Builder(this)
-                        .setSmallIcon(R.drawable.ic_staticnotif)
-                        .setContentTitle("Event detected in your location!")
-                        .setContentText("Would you like to join?")
-                        .setPriority(NotificationCompat.PRIORITY_MAX)
-                        .addAction(R.drawable.ic_justdone,"YES",pIntent)
-                        .setSound(alarmSound)
-                        .setVibrate(vibrate);
-
-        final Button button = (Button) findViewById(R.id.button);
-        button.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                mNotificationManager.notify(notifCounter, mBuilder.build());
-                notifCounter++;
-            }
-        });
 
         final Button secondbutton = (Button) findViewById(R.id.button2);
         secondbutton.setOnClickListener(new View.OnClickListener() {

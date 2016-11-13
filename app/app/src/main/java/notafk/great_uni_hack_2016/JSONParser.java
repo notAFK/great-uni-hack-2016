@@ -1,7 +1,16 @@
 package notafk.great_uni_hack_2016;
 
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Context;
+import android.content.Intent;
+import android.media.RingtoneManager;
+import android.net.Uri;
 import android.os.AsyncTask;
+import android.support.v4.app.NotificationCompat;
 import android.util.Log;
+
+import org.json.JSONArray;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -16,6 +25,11 @@ import java.net.URL;
 
 public class JSONParser extends AsyncTask<String, Void, String> {
 
+    private Context CONTEXT;
+
+    public JSONParser(Context c) {
+        this.CONTEXT = c;
+    }
     protected String doInBackground(String... urls) {
         HttpURLConnection c = null;
         try {
@@ -62,6 +76,51 @@ public class JSONParser extends AsyncTask<String, Void, String> {
     protected void onPostExecute(String events) {
         if(events != null) {
             Log.e("Events: ", events.toString());
+
+            String event_id = "0";
+            String event_title = "";
+
+            Uri alarmSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+            long[] vibrate = { 0, 100, 200, 300, 1000, 200, 100, 0 };
+
+
+            try {
+                JSONArray arr = new JSONArray(events);
+                for (int i = 0; i < arr.length(); i++) {
+                    event_id = arr.getJSONObject(i).getString("id");
+                    event_title = arr.getJSONObject(i).getString("title");
+
+                    Intent yesIntent = new Intent(this.CONTEXT, EventDetectedPasswordActivity.class);
+                    yesIntent.putExtra("eventTitle", event_title);
+                    yesIntent.putExtra("eventId", Integer.parseInt(event_id));
+                    yesIntent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    PendingIntent pIntent = PendingIntent.getActivity(this.CONTEXT, (int) System.currentTimeMillis(),
+                            yesIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+
+                    NotificationCompat.Builder mBuilder =
+                            new NotificationCompat.Builder(this.CONTEXT)
+                                    .setSmallIcon(R.drawable.ic_staticnotif)
+                                    .setContentTitle("Event detected in your location!")
+                                    .setContentText("Would you like to join " + event_title + "?")
+                                    .setPriority(NotificationCompat.PRIORITY_MAX)
+                                    .addAction(R.drawable.ic_justdone,"YES",pIntent)
+                                    .setSound(alarmSound)
+                                    .setVibrate(vibrate);
+                    int mNotificationId = Integer.parseInt(event_id);
+                    // Gets an instance of the NotificationManager service
+                    NotificationManager mNotifyMgr =
+                            (NotificationManager) CONTEXT.getSystemService(Context.NOTIFICATION_SERVICE);
+                    // Builds the notification and issues it.
+                    mNotifyMgr.notify(mNotificationId, mBuilder.build());
+
+                }
+            } catch (Exception ex) {
+                ///
+            }
+
+
+
+
         } else {
             Log.e("Events: ", "null");
         }

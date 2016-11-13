@@ -47,4 +47,18 @@ Route::group(['prefix' => 'api'], function() {
     echo json_encode($result);
     exit();
   });
+  Route::get('/pass/{id}/{pass}', function($id, $pass) {
+    $event = App\Event::find($id);
+    if(!$event) {
+      echo json_encode(["status" => "error", "message" => "Invalid id."]);
+      exit();
+    }
+    if($event->password != $pass) {
+      echo json_encode(["status" => "error", "message" => "Wrong pass."]);
+      exit();
+    }
+
+    echo json_encode(["status" => "success", "id" => $event->id]);
+    exit();
+  });
 });
