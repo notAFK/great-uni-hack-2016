@@ -10,7 +10,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 public class EventDetectedPasswordActivity extends AppCompatActivity {
-    private String API_URL = "";
+    private String API_URL = "http://10.0.2.2/projects/guh2016/api";
     private int event_id = 0;
 
     @Override
@@ -43,7 +43,7 @@ public class EventDetectedPasswordActivity extends AppCompatActivity {
         final Button secondbutton = (Button) findViewById(R.id.button3);
         secondbutton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                TextView passTV = (TextView) findViewById(R.id.eventPasswordTV);
+                TextView passTV = (TextView) findViewById(R.id.EditTextName);
                 String pass = API_URL + "/pass/" + evt_id +
                         '/' + passTV.getText().toString();
                 Log.e("pass: ", pass);

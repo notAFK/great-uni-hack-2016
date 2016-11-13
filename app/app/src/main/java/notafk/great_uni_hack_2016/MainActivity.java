@@ -3,6 +3,7 @@ package notafk.great_uni_hack_2016;
 import android.app.NotificationManager;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.ContentObserver;
 import android.database.Cursor;
 import android.graphics.Bitmap;
@@ -65,6 +66,13 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        SharedPreferences settings =
+                getSharedPreferences(MainActivity.PREFS_NAME, 0);
+        SharedPreferences.Editor editor = settings.edit();
+        editor.putInt("event_id", 0);
+        editor.putBoolean("upload_enabled", false);
+        editor.apply();
 
         //---------------------------------------
         //The code which takes care of newly made pictures
@@ -289,7 +297,16 @@ public class MainActivity extends AppCompatActivity {
         AsyncHttpClient client = new AsyncHttpClient();
         // Don't forget to change the IP address to your LAN address. Port no as well.
         System.out.println("A ajungs la pasul cel mare");
-        client.post("http://test.lanfin.com/api/upload" ,
+        SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
+        boolean enabled = settings.getBoolean("upload_enabled", false);
+        int event_id = settings.getInt("event_id", 0);
+        if(!enabled) {
+            Log.e("status", "not enabled");
+            return;
+        }
+        String the_url = "http://test.lanfin.com/api/upload/" + event_id;
+        Log.e("url: ", the_url);
+        client.post(the_url ,
                 params, new AsyncHttpResponseHandler() {
                     // When the response returned by REST has Http
                     // response code '200'
