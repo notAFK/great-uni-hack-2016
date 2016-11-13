@@ -1,41 +1,24 @@
 package notafk.great_uni_hack_2016;
 
-import android.app.Activity;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v4.app.RemoteInput;
+import android.support.v4.app.NotificationCompat;
 import android.support.v7.app.AlertDialog;
-import android.support.v7.widget.ForwardingListener;
-import android.text.InputType;
-import android.util.Log;
-import android.widget.Button;
-import android.widget.ToggleButton;
-import android.widget.CompoundButton;
-import android.widget.Switch;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
+import android.text.InputType;
 import android.view.Menu;
-import android.view.MenuItem;
-import android.support.v4.app.NotificationCompat;
-import android.content.Intent;
-import android.app.PendingIntent;
-import android.support.v4.app.TaskStackBuilder;
-import android.app.NotificationManager;
-import android.content.Context;
-import android.app.Notification;
-import android.app.NotificationManager;
-import android.app.PendingIntent;
-import android.content.Intent;
-import android.content.res.Resources;
-import android.support.v7.app.ActionBarActivity;
-import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.EditText;
-import static android.app.PendingIntent.getActivity;
+import android.widget.ToggleButton;
 
 public class MainActivity extends AppCompatActivity {
 
