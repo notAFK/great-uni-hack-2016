@@ -82,18 +82,44 @@ class EventController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Request $request, $id)
+    public function show_post(Request $request, $id)
     {
         $event = Event::find($id);
         if(!$event) {
-            return view('events.index')->withErrors(['event' => 'No event with this id.']);
+            return redirect()->to('/events')->withErrors(['event' => 'No event with this id.']);
         }
 
+        if(Auth::check() && Auth::id() == $event->user_id) {
+            return view('in.events.show')->with('event', $event);
+        }
         if($event->password == $request->input('password')) {
-            return view('events.show')->with('event', $event);
+            return view('in.events.show')->with('event', $event);
         }
 
-        return view('events.index')->withErrors(['password' => 'Wrong password.']);
+        return redirect()->to('/events')->withErrors(['password' => 'Wrong password.']);
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show_get(Request $request, $id)
+    {
+        $event = Event::find($id);
+        if(!$event) {
+            return redirect()->to('/events')->withErrors(['event' => 'No event with this id.']);
+        }
+
+        if(Auth::check() && Auth::id() == $event->user_id) {
+            return view('in.events.show')->with('event', $event);
+        }
+        if($event->password == $request->input('password')) {
+            return view('in.events.show')->with('event', $event);
+        }
+
+        return redirect()->to('/events')->withErrors(['password' => 'Wrong password.']);
     }
 
     /**
