@@ -7,7 +7,7 @@ android {
     defaultConfig {
         applicationId "notafk.great_uni_hack_2016"
         minSdkVersion 16
-        targetSdkVersion 24
+        targetSdkVersion 16
         versionCode 1
         versionName "0.1.0"
     }

@@ -26,3 +26,25 @@ Route::group(['prefix' => '/events'], function() {
   Route::get('/edit/{id}', 'EventController@edit')->middleware('auth');
   Route::post('/edit/{id}', 'EventController@update')->middleware('auth');
 });
+
+Route::group(['prefix' => 'api'], function() {
+  Route::post('/upload', 'Api\UploadController@upload_single');
+  Route::get('/check/{lat}/{lng}', function($lat, $lng) {
+
+    $query = "SELECT *, ( 3959 * acos( cos( radians(" . $lat . ") ) * cos( radians( lat ) ) * cos( radians( lng ) - radians(" . $lng . ") ) + sin( radians(" . $lat . ") ) * sin( radians( lat ) ) ) ) AS distance
+                  FROM events
+                  WHERE NOW()
+                  BETWEEN start_date AND end_date
+                  HAVING distance < 0.1
+                  ORDER BY distance";
+    $events = DB::select($query);
+
+    $result = [];
+    foreach ($events as $key => $event) {
+      array_push($result, ["id" => $event->id, "title" => $event->title]);
+    }
+    header('Content-Type: application/json');
+    echo json_encode($result);
+    exit();
+  });
+});

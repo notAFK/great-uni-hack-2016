@@ -13,12 +13,14 @@ import android.os.Bundle;
 import android.os.IBinder;
 import android.util.Log;
 
+
 public class LocationService extends Service
 {
     private static final String TAG = "BOOMBOOMTESTGPS";
     private LocationManager mLocationManager = null;
     private static final int LOCATION_INTERVAL = 5000;
     private static final float LOCATION_DISTANCE = 10f;
+    private static final String API_URL = "http://10.0.2.2/projects/guh2016/api";
 
     private class LocationListener implements android.location.LocationListener
     {
@@ -34,6 +36,10 @@ public class LocationService extends Service
         public void onLocationChanged(Location location)
         {
             Log.e(TAG, "onLocationChanged: " + location);
+
+            new JSONParser().execute(API_URL + "/check/" + location.getLatitude() + "/" +
+                    location.getLongitude());
+
             mLastLocation.set(location);
         }
 
