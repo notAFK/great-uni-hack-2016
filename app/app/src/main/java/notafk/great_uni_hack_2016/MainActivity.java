@@ -37,34 +37,6 @@ import android.widget.EditText;
 
 public class MainActivity extends AppCompatActivity {
 
-    private String m_Text = "";
-
-    private void showSimplePopUp() {
-
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("PASSWORD PLEASE:");
-
-        final EditText input = new EditText(this);
-        input.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
-        builder.setView(input);
-
-        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                m_Text = input.getText().toString();
-            }
-        });
-        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.cancel();
-            }
-        });
-
-        builder.show();
-    }
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -76,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
         toggle.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
-                    showSimplePopUp();
+                    // OTHER TOGGLE
                 } else {
                     // The toggle is disabled
                 }
@@ -104,6 +76,7 @@ public class MainActivity extends AppCompatActivity {
 
         Uri alarmSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
         long[] vibrate = { 0, 100, 200, 300, 1000, 200, 100, 0 };
+
 
         final NotificationCompat.Builder mBuilder =
                 new NotificationCompat.Builder(this)
@@ -135,3 +108,31 @@ public class MainActivity extends AppCompatActivity {
 
 }
 
+//class OurPasswordPopup extends AppCompatActivity {
+//    public String givenPassword = "";
+//
+//    protected void showSimplePopUp() {
+//
+//        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+//        builder.setTitle("PASSWORD PLEASE:");
+//
+//        final EditText input = new EditText(this);
+//        input.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+//        builder.setView(input);
+//
+//        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+//            @Override
+//            public void onClick(DialogInterface dialog, int which) {
+//                givenPassword = input.getText().toString();
+//            }
+//        });
+//        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+//            @Override
+//            public void onClick(DialogInterface dialog, int which) {
+//                dialog.cancel();
+//            }
+//        });
+//
+//        builder.show();
+//    }
+//}
