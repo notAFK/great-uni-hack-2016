@@ -6,7 +6,7 @@
 ###### Making Android great again.
 
 ### Short description
-A web and mobile application that helps people at events put all their pictures together.
+A web and mobile application that helps people attending events put all their pictures together.
 
 ### Motivation
 People take lots of photos at events, and then forget to share them. People attend events and would like to see all the pictures that were taken in there in one place. Would there be any way to automate this process and centralize it?
