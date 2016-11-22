@@ -19,7 +19,7 @@ The Server receives the pictures and stores them in the Event's folder.
 When attendees leave the event area, or the event ends, the auto-upload is disabled.
 All the uploaded photos can be accessed on the website, using the password given beforehand.
 
-### Technichal
+### Technical
 ```app``` contains the Android Studio source files.
 
 
